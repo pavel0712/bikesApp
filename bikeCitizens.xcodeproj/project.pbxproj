@@ -56,7 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5569DCB227CA3D400032B4C3 /* bikeCitizens.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bikeCitizens.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		5569DCB227CA3D400032B4C3 /* Bike App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bike App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5569DCB527CA3D400032B4C3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5569DCB727CA3D400032B4C3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5569DCBC27CA3D410032B4C3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		5569DCB327CA3D400032B4C3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5569DCB227CA3D400032B4C3 /* bikeCitizens.app */,
+				5569DCB227CA3D400032B4C3 /* Bike App.app */,
 				5569DCCB27CA3D430032B4C3 /* bikeCitizensTests.xctest */,
 				5569DCD527CA3D430032B4C3 /* bikeCitizensUITests.xctest */,
 			);
@@ -254,7 +254,7 @@
 				5569DCF727CA8BBD0032B4C3 /* SDWebImage */,
 			);
 			productName = bikeCitizens;
-			productReference = 5569DCB227CA3D400032B4C3 /* bikeCitizens.app */;
+			productReference = 5569DCB227CA3D400032B4C3 /* Bike App.app */;
 			productType = "com.apple.product-type.application";
 		};
 		5569DCCA27CA3D430032B4C3 /* bikeCitizensTests */ = {
@@ -585,7 +585,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = home.bikeCitizens;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bike App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -613,7 +613,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = home.bikeCitizens;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Bike App";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

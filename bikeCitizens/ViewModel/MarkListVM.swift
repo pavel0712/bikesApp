@@ -28,7 +28,6 @@ class MarkListVM {
         view?.showLoader(true)
 
         apiManager.loadMarks(withName: inputName) { [weak self] marks in
-            guard let marks = marks else { return }
             self?.marks = marks
             self?.view?.showLoader(false)
             self?.view?.reloadData()

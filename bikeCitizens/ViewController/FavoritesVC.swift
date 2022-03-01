@@ -20,7 +20,7 @@ class FavoritesVC: UIViewController {
 
 }
 
-
+// MARK: - UITableViewDataSource
 extension FavoritesVC: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -38,14 +38,19 @@ extension FavoritesVC: UITableViewDataSource {
     
 }
 
+// MARK: - MarkListTableViewInput
 extension FavoritesVC: MarkListTableViewInput {
     
     func reloadData() {
         tableView.reloadData()
     }
     
+}
+
+// MARK: - MarkListTableViewEdit
+extension FavoritesVC: MarkListTableViewEdit {
+    
     func deleteRows(at: [IndexPath]) {
         tableView.deleteRows(at: at, with: .fade)
     }
-    
 }

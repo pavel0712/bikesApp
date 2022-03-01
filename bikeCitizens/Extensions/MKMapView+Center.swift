@@ -9,7 +9,7 @@ import Foundation
 import MapKit
 
 extension MKMapView {
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 2000) {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 4000) {
         let coordinateRegion = MKCoordinateRegion(
             center: location.coordinate,
             latitudinalMeters: regionRadius,

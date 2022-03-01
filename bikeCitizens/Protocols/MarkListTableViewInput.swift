@@ -9,5 +9,8 @@ import Foundation
 
 protocol MarkListTableViewInput: AnyObject {
     func reloadData()
+}
+
+protocol MarkListTableViewEdit: AnyObject {
     func deleteRows(at: [IndexPath])
 }

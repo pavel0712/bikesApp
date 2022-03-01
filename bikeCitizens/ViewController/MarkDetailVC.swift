@@ -16,6 +16,8 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
+    let annotationIdentifier = "Annotation"
+    
     var markDetailVM: MarkDetailVM?
     
     var sheetMarkVC: UISheetPresentationController {
@@ -81,19 +83,23 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
 
 }
 
+// MARK: - MKMapViewDelegate
 extension MarkDetailVC: MKMapViewDelegate {
+        
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard annotation is MKPointAnnotation else { return nil }
         
-        let identifier = "Annotation"
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: annotationIdentifier)
         
         if annotationView == nil {
-            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: annotationIdentifier)
             annotationView!.canShowCallout = true
         } else {
             annotationView!.annotation = annotation
         }
+                
+        let pinImage = UIImage(named: "annotation-icon-15")
+        annotationView!.image = pinImage
         
         return annotationView
     }

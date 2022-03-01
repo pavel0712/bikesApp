@@ -15,19 +15,14 @@ class StoreManager {
     static let shared = StoreManager()
     
     private var context: NSManagedObjectContext {
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
-        return appDelegate.persistentContainer.viewContext
+        return persistentContainer.viewContext
     }
     
     func fetchPlaces() -> [Place] {
         let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
-        do {
-            return try context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        return []
+
+        return (try? context.fetch(fetchRequest)) ?? []
     }
     
     func addRemoveMark(mark: MarkModel) {
@@ -39,25 +34,8 @@ class StoreManager {
     }
     
     func isPlaceExist(placeID: String) -> Bool {
-        
-        guard let _ = fetchPlace(byID: placeID) else { return false }
-        
-        return true
-    }
-    
-    func fetchPlace(byID: String) -> Place? {
-        let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
-        fetchRequest.predicate = NSPredicate(
-            format: "placeID = %@", byID
-        )
-        
-        do {
-            return try context.fetch(fetchRequest).first
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-        
-        return nil
+                
+        return fetchPlace(byID: placeID) != nil
     }
     
     func addPlace(fromMark: MarkModel) {
@@ -74,17 +52,42 @@ class StoreManager {
         saveContext()
     }
     
-    
     func deletePlace(place: Place) {
         context.delete(place)
         saveContext()
     }
     
-    private func saveContext() {
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
+    private func fetchPlace(byID: String) -> Place? {
+        let fetchRequest: NSFetchRequest<Place> = Place.fetchRequest()
+        fetchRequest.predicate = NSPredicate(
+            format: "placeID = %@", byID
+        )
+
+        return try? context.fetch(fetchRequest).first
+    }
+    
+    // MARK: - Core Data stack
+    lazy var persistentContainer: NSPersistentContainer = {
+
+        let container = NSPersistentContainer(name: "bikeCitizens")
+        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        })
+        return container
+    }()
+
+    // MARK: - Core Data Saving support
+    func saveContext () {
+        let context = persistentContainer.viewContext
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                let nserror = error as NSError
+                fatalError("Unresolved error \(nserror), \(nserror.userInfo)")
+            }
         }
         
         NotificationCenter.default
@@ -93,46 +96,4 @@ class StoreManager {
                   userInfo: nil)
     }
     
-    
-    func parseLocalFile(forName: String) -> SearchResponse? {
-        guard let data = readLocalFile(forName: forName) else {
-            print("cant find file with name: ", forName)
-            return nil
-        }
-        
-        guard let response = parse(jsonData: data) else {
-            return nil
-        }
-        
-        return response
-    }
-    
-    private func readLocalFile(forName name: String) -> Data? {
-        do {
-            if let bundlePath = Bundle.main.path(forResource: name,
-                                                 ofType: "json"),
-                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
-                return jsonData
-            }
-        } catch {
-            print(error)
-        }
-        
-        return nil
-    }
-    
-    func parse(jsonData: Data) -> SearchResponse? {
-        do {
-            let decodedData = try JSONDecoder().decode(SearchResponse.self,
-                                                       from: jsonData)
-            
-            print("decodedData.data.count: ", decodedData.data.count)
-            print("===================================")
-            return decodedData
-        } catch {
-            print("decode error")
-        }
-        
-        return nil
-    }
 }

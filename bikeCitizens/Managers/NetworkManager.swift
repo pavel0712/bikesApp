@@ -12,8 +12,7 @@ let kSEARCH_PATH = "/api/v2/search"
 
 class NetworkManager {
 
-    
-    func loadMarks(withName name: String, withCompletion completion: @escaping ([MarkModel]?) -> Void) {
+    func loadMarks(withName name: String, withCompletion completion: @escaping ([MarkModel]) -> Void) {
         
         let urlString = "\(kHOST)\(kSEARCH_PATH)?q=\(name)"
         guard let url = URL(string: urlString) else { return }
@@ -22,15 +21,19 @@ class NetworkManager {
         }
     }
     
-    func loadMarks(withURL url: URL, withCompletion completion: @escaping ([MarkModel]?) -> Void) {
+    private func loadMarks(withURL url: URL, withCompletion completion: @escaping ([MarkModel]) -> Void) {
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
-            guard let data = data else {
-                DispatchQueue.main.async { completion(nil) }
+            guard let responseData = data else {
+                DispatchQueue.main.async { completion([]) }
                 return
             }
-            let wrapper = try? JSONDecoder().decode(SearchResponse.self, from: data)
+            let wrapper = try? JSONDecoder().decode(SearchResponse.self, from: responseData)
+            guard let marks = wrapper?.data else {
+                DispatchQueue.main.async { completion([]) }
+                return
+            }
             DispatchQueue.main.async {
-                completion(wrapper?.data)
+                completion(marks)
             }
         }
         task.resume()

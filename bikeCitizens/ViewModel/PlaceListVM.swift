@@ -11,9 +11,9 @@ class PlaceListVM {
     
     private let dbManager = StoreManager.shared
     private var marks = StoreManager.shared.fetchPlaces()
-    private weak var view: MarkListTableViewInput?
+    private weak var view: (MarkListTableViewInput & MarkListTableViewEdit)?
     
-    init(withView view: MarkListTableViewInput) {
+    init(withView view: MarkListTableViewInput & MarkListTableViewEdit) {
         self.view = view
     }
     

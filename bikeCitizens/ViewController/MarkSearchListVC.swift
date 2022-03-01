@@ -21,8 +21,6 @@ class MarkSearchListVC: UIViewController {
 
         showLoader(false)
         self.tableView.isHidden = true
-        
-        markListVM.requestDataFor(inputName: "Berlin") // test
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -39,6 +37,7 @@ class MarkSearchListVC: UIViewController {
 
 }
 
+// MARK: - Loadable
 extension MarkSearchListVC: Loadable {
     
     func showLoader(_ show: Bool) {
@@ -51,6 +50,7 @@ extension MarkSearchListVC: Loadable {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MarkSearchListVC: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,15 +68,18 @@ extension MarkSearchListVC: UITableViewDataSource {
     
 }
 
+// MARK: - UITableViewDelegate
 extension MarkSearchListVC: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let markDetailVM = markListVM.markDetailVMForSelectedRow(atIndex: indexPath) else { return }
+        self.searchBar.endEditing(true)
         self.presentSheet(forMark: markDetailVM)
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
+// MARK: - UISearchBarDelegate
 extension MarkSearchListVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         markListVM.requestDataFor(inputName: searchText)
@@ -87,13 +90,11 @@ extension MarkSearchListVC: UISearchBarDelegate {
     }
 }
 
+// MARK: - MarkListTableViewInput
 extension MarkSearchListVC: MarkListTableViewInput {
     
     func reloadData() {
         tableView.reloadData()
-    }
-    
-    func deleteRows(at: [IndexPath]) {
     }
     
 }
