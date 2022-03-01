@@ -16,7 +16,8 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
     
-    var markDetailVC: MarkDetailVM?
+    var markDetailVM: MarkDetailVM?
+    
     var sheetMarkVC: UISheetPresentationController {
         presentationController as! UISheetPresentationController
     }
@@ -28,11 +29,20 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
         sheetMarkVC.detents = [ .medium() ]
     }
     
-    func setMarkVM(mark: MarkModel) {
-        loadImageIcon(fromURLString: mark.iconURL)
-        nameLabel.text = mark.name
-        summaryLabel.text = mark.summary
-        configureFavoriteBtn(forState: mark.isFavorite)
+    func displayMarkVM(markVM: MarkDetailVM) {
+        loadImageIcon(fromURLString: markVM.iconUrl)
+        nameLabel.text = markVM.name
+        summaryLabel.text = markVM.summary
+        configureFavoriteBtn(forState: markVM.isFavorite)
+    }
+    
+    func configureMapView(markVM: MarkDetailVM) {
+        mapView.delegate = self
+        let point = MKPointAnnotation()
+        point.title = markVM.name
+        point.coordinate = markVM.location2D
+        mapView.addAnnotation(point)
+        mapView.centerToLocation(markVM.location)
     }
     
     private func loadImageIcon(fromURLString: String) {
@@ -50,20 +60,38 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
         super.viewDidLoad()
         self.configureSheet()
         
-        if let markDetailVC = self.markDetailVC {
-            self.setMarkVM(mark: markDetailVC.mark)
+        if let markDetail = self.markDetailVM {
+            self.displayMarkVM(markVM: markDetail)
+            self.configureMapView(markVM: markDetail)
         }
     }
-    
 
-    /*
-    // MARK: - Navigation
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension MarkDetailVC: MKMapViewDelegate {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        guard annotation is MKPointAnnotation else { return nil }
+        
+        let identifier = "Annotation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        
+        if annotationView == nil {
+            annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            annotationView!.canShowCallout = true
+        } else {
+            annotationView!.annotation = annotation
+        }
+        
+        return annotationView
     }
-    */
+}
 
+private extension MKMapView {
+    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
+        let coordinateRegion = MKCoordinateRegion(
+            center: location.coordinate,
+            latitudinalMeters: regionRadius,
+            longitudinalMeters: regionRadius)
+        setRegion(coordinateRegion, animated: true)
+    }
 }

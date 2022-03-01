@@ -21,6 +21,8 @@ class MarkSearchListVC: UIViewController {
 
         showLoader(false)
         self.tableView.isHidden = true
+        
+        markListVM.requestDataFor(inputName: "Berlin") // test
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -31,7 +33,7 @@ class MarkSearchListVC: UIViewController {
     func presentSheet(forMark mark: MarkDetailVM) {
         let storyboard = UIStoryboard(name: "MarkSheet", bundle: nil)
         let sheetMarkDetailVC = storyboard.instantiateViewController(withIdentifier: "MarkDetailVC") as! MarkDetailVC
-        sheetMarkDetailVC.markDetailVC = mark
+        sheetMarkDetailVC.markDetailVM = mark
         self.present(sheetMarkDetailVC, animated: true, completion: nil)
     }
 
@@ -71,6 +73,7 @@ extension MarkSearchListVC: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let markDetailVM = markListVM.markDetailVMForSelectedRow(atIndex: indexPath) else { return }
         self.presentSheet(forMark: markDetailVM)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
