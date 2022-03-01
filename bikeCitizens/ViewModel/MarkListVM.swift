@@ -9,6 +9,8 @@ import Foundation
 
 class MarkListVM {
     
+     private let notificationCenter = NotificationCenter.default
+
     private var marks: [MarkModel] = []
     private let apiManager = NetworkManager()
     private let dbManager = StoreManager.shared
@@ -16,8 +18,11 @@ class MarkListVM {
 
     init(withView view: (MarkListTableViewInput & Loadable)) {
         self.view = view
+        notificationCenter.addObserver(self,
+                           selector:#selector(coreDataDidChange(_:)),
+                           name: .coreDataDidChange,
+                           object: nil)
     }
-    
     
     func requestDataFor(inputName: String) {
         view?.showLoader(true)
@@ -28,6 +33,16 @@ class MarkListVM {
             self?.view?.showLoader(false)
             self?.view?.reloadData()
         }
+    }
+    
+    @objc func coreDataDidChange(_ notification: Notification) {
+        self.view?.reloadData()
+    }
+    
+    deinit {
+        notificationCenter.removeObserver(self,
+                                          name: .coreDataDidChange,
+                                          object: nil)
     }
 
 }

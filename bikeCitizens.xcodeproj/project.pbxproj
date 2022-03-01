@@ -24,6 +24,8 @@
 		557A3B8927CD8FFD00D9B289 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A3B8827CD8FFD00D9B289 /* Loadable.swift */; };
 		557A3B9127CD9ADD00D9B289 /* MarkListTableViewInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A3B9027CD9ADD00D9B289 /* MarkListTableViewInput.swift */; };
 		557A3B9327CD9B0300D9B289 /* MarkListTableViewDelegateType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 557A3B9227CD9B0300D9B289 /* MarkListTableViewDelegateType.swift */; };
+		5597972627CE552C007CB68B /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597972527CE552C007CB68B /* Notification+Name.swift */; };
+		5597972927CE5D4E007CB68B /* MKMapView+Center.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5597972827CE5D4E007CB68B /* MKMapView+Center.swift */; };
 		55B8208C27CBC5F2000A6389 /* FavoritesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8208B27CBC5F1000A6389 /* FavoritesVC.swift */; };
 		55B8209027CBCA7F000A6389 /* MarkListTableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8208F27CBCA7F000A6389 /* MarkListTableViewType.swift */; };
 		55B8209227CBCB90000A6389 /* MarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B8209127CBCB90000A6389 /* MarkTableViewCell.swift */; };
@@ -74,6 +76,8 @@
 		557A3B8827CD8FFD00D9B289 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		557A3B9027CD9ADD00D9B289 /* MarkListTableViewInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListTableViewInput.swift; sourceTree = "<group>"; };
 		557A3B9227CD9B0300D9B289 /* MarkListTableViewDelegateType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListTableViewDelegateType.swift; sourceTree = "<group>"; };
+		5597972527CE552C007CB68B /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
+		5597972827CE5D4E007CB68B /* MKMapView+Center.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MKMapView+Center.swift"; sourceTree = "<group>"; };
 		55B8208B27CBC5F1000A6389 /* FavoritesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesVC.swift; sourceTree = "<group>"; };
 		55B8208F27CBCA7F000A6389 /* MarkListTableViewType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkListTableViewType.swift; sourceTree = "<group>"; };
 		55B8209127CBCB90000A6389 /* MarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarkTableViewCell.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 			children = (
 				5569DCB527CA3D400032B4C3 /* AppDelegate.swift */,
 				5569DCB727CA3D400032B4C3 /* SceneDelegate.swift */,
+				5597972727CE5D14007CB68B /* Extensions */,
 				557A3B8A27CD98F700D9B289 /* ViewController */,
 				557A3B8F27CD99FE00D9B289 /* Protocols */,
 				557A3B8B27CD991800D9B289 /* ViewModel */,
@@ -218,6 +223,15 @@
 				557A3B8827CD8FFD00D9B289 /* Loadable.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		5597972727CE5D14007CB68B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5597972527CE552C007CB68B /* Notification+Name.swift */,
+				5597972827CE5D4E007CB68B /* MKMapView+Center.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,6 +376,7 @@
 				55B8209627CC02BA000A6389 /* MarkTableViewCellVM.swift in Sources */,
 				55B820A427CC444B000A6389 /* MarkSearchListVC.swift in Sources */,
 				55B8209C27CC2D1D000A6389 /* SearchResponse.swift in Sources */,
+				5597972927CE5D4E007CB68B /* MKMapView+Center.swift in Sources */,
 				55B8209A27CC295A000A6389 /* NetworkManager.swift in Sources */,
 				55B8208C27CBC5F2000A6389 /* FavoritesVC.swift in Sources */,
 				55B820A627CC44CA000A6389 /* MarkListVM.swift in Sources */,
@@ -375,6 +390,7 @@
 				5569DCB627CA3D400032B4C3 /* AppDelegate.swift in Sources */,
 				557A3B9327CD9B0300D9B289 /* MarkListTableViewDelegateType.swift in Sources */,
 				5569DCB827CA3D400032B4C3 /* SceneDelegate.swift in Sources */,
+				5597972627CE552C007CB68B /* Notification+Name.swift in Sources */,
 				557A3B8327CD05E300D9B289 /* MarkDetailVC.swift in Sources */,
 				55B8209227CBCB90000A6389 /* MarkTableViewCell.swift in Sources */,
 			);

@@ -14,7 +14,7 @@ class StoreManager {
     
     static let shared = StoreManager()
     
-    var context: NSManagedObjectContext {
+    private var context: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         
         return appDelegate.persistentContainer.viewContext
@@ -71,22 +71,26 @@ class StoreManager {
         placeObj.lat = fromMark.lat
         placeObj.lon = fromMark.lon
         
-        do {
-            try context.save()
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
+        saveContext()
     }
     
     
     func deletePlace(place: Place) {
         context.delete(place)
-        
+        saveContext()
+    }
+    
+    private func saveContext() {
         do {
             try context.save()
         } catch let error as NSError {
             print(error.localizedDescription)
         }
+        
+        NotificationCenter.default
+            .post(name:.coreDataDidChange,
+                  object: nil,
+                  userInfo: nil)
     }
     
     

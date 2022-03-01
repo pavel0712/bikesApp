@@ -29,14 +29,27 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
         sheetMarkVC.detents = [ .medium() ]
     }
     
-    func displayMarkVM(markVM: MarkDetailVM) {
+    
+    @IBAction func tapLikeButton(_ sender: Any) {
+        if let markDetail = self.markDetailVM {
+            self.markDetailVM?.tapLikeButton()
+            self.displayMarkVM(markVM: markDetail)
+        }
+        NotificationCenter.default
+            .post(name:.coreDataDidChange,
+                  object: nil,
+                  userInfo: nil)
+    }
+    
+    
+    private func displayMarkVM(markVM: MarkDetailVM) {
         loadImageIcon(fromURLString: markVM.iconUrl)
         nameLabel.text = markVM.name
         summaryLabel.text = markVM.summary
         configureFavoriteBtn(forState: markVM.isFavorite)
     }
     
-    func configureMapView(markVM: MarkDetailVM) {
+    private func configureMapView(markVM: MarkDetailVM) {
         mapView.delegate = self
         let point = MKPointAnnotation()
         point.title = markVM.name
@@ -83,15 +96,5 @@ extension MarkDetailVC: MKMapViewDelegate {
         }
         
         return annotationView
-    }
-}
-
-private extension MKMapView {
-    func centerToLocation(_ location: CLLocation, regionRadius: CLLocationDistance = 1000) {
-        let coordinateRegion = MKCoordinateRegion(
-            center: location.coordinate,
-            latitudinalMeters: regionRadius,
-            longitudinalMeters: regionRadius)
-        setRegion(coordinateRegion, animated: true)
     }
 }

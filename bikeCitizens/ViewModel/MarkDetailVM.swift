@@ -10,6 +10,8 @@ import CoreLocation
 
 struct MarkDetailVM {
 
+    private let dbManager = StoreManager.shared
+    
     var iconUrl: String {
         return mark.iconURL
     }
@@ -23,7 +25,7 @@ struct MarkDetailVM {
     }
     
     var isFavorite: Bool {
-        return StoreManager.shared.isPlaceExist(placeID: mark.markID)
+        return dbManager.isPlaceExist(placeID: mark.markID)
     }
     
     var location2D: CLLocationCoordinate2D {
@@ -38,6 +40,10 @@ struct MarkDetailVM {
 
     init(mark: MarkModel) {
         self.mark = mark
+    }
+    
+    func tapLikeButton() {
+        dbManager.addRemoveMark(mark: self.mark)
     }
     
 }
