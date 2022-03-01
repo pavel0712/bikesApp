@@ -75,8 +75,8 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="B8C-mv-MtF" userLabel="favorite">
                                                     <rect key="frame" x="349" y="7.5" width="45" height="45"/>
                                                     <constraints>
+                                                        <constraint firstAttribute="width" secondItem="B8C-mv-MtF" secondAttribute="height" multiplier="1:1" id="3ML-sf-BuN"/>
                                                         <constraint firstAttribute="height" constant="45" id="GuM-cc-838"/>
-                                                        <constraint firstAttribute="width" constant="45" id="wz1-2h-dXo"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
@@ -185,7 +185,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-W2-Qtx" userLabel="summary">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0F-W2-Qtx" userLabel="summary">
                                                     <rect key="frame" x="75" y="33" width="37.5" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="uIO-sM-vTe"/>
@@ -197,8 +197,8 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oCW-Az-Iap" userLabel="favorite">
                                                     <rect key="frame" x="349" y="7.5" width="45" height="45"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="45" id="b8P-SJ-vj1"/>
-                                                        <constraint firstAttribute="width" constant="45" id="stH-Wd-BM8"/>
+                                                        <constraint firstAttribute="height" constant="45" id="03K-8G-V2G"/>
+                                                        <constraint firstAttribute="width" secondItem="oCW-Az-Iap" secondAttribute="height" multiplier="1:1" id="XfJ-dp-J4j"/>
                                                     </constraints>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system">
@@ -212,12 +212,12 @@
                                             <constraints>
                                                 <constraint firstItem="d0F-W2-Qtx" firstAttribute="top" secondItem="E9q-Ml-46d" secondAttribute="bottom" id="0St-50-RYs"/>
                                                 <constraint firstItem="YHo-Zw-ZSC" firstAttribute="leading" secondItem="X3A-RL-or4" secondAttribute="leading" constant="20" id="3HY-UB-EAX"/>
+                                                <constraint firstAttribute="trailing" secondItem="oCW-Az-Iap" secondAttribute="trailing" constant="20" symbolic="YES" id="AXI-sa-yvP"/>
                                                 <constraint firstItem="E9q-Ml-46d" firstAttribute="top" secondItem="X3A-RL-or4" secondAttribute="top" constant="15" id="Aev-ny-uQq"/>
-                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E9q-Ml-46d" secondAttribute="trailing" constant="8" symbolic="YES" id="K3w-QA-ZFz"/>
+                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="centerY" secondItem="X3A-RL-or4" secondAttribute="centerY" id="Fxl-MG-JbW"/>
+                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="E9q-Ml-46d" secondAttribute="trailing" constant="8" symbolic="YES" id="HAi-zW-k6h"/>
                                                 <constraint firstItem="d0F-W2-Qtx" firstAttribute="leading" secondItem="YHo-Zw-ZSC" secondAttribute="trailing" constant="15" id="NiM-dx-N1j"/>
-                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="centerY" secondItem="X3A-RL-or4" secondAttribute="centerY" id="VnI-M3-pCe"/>
-                                                <constraint firstAttribute="trailing" secondItem="oCW-Az-Iap" secondAttribute="trailing" constant="20" id="e9l-Vs-HQW"/>
-                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d0F-W2-Qtx" secondAttribute="trailing" constant="8" symbolic="YES" id="nff-VD-fYf"/>
+                                                <constraint firstItem="oCW-Az-Iap" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="d0F-W2-Qtx" secondAttribute="trailing" constant="8" symbolic="YES" id="Z9s-6b-zYY"/>
                                                 <constraint firstItem="E9q-Ml-46d" firstAttribute="leading" secondItem="YHo-Zw-ZSC" secondAttribute="trailing" constant="15" id="xDZ-Le-HXS"/>
                                                 <constraint firstItem="YHo-Zw-ZSC" firstAttribute="centerY" secondItem="X3A-RL-or4" secondAttribute="centerY" id="zec-y3-Xy2"/>
                                             </constraints>
