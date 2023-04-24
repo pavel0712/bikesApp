@@ -15,7 +15,11 @@ class NetworkManager {
     func loadMarks(withName name: String, withCompletion completion: @escaping ([MarkModel]) -> Void) {
         
         let urlString = "\(kHOST)\(kSEARCH_PATH)?q=\(name)"
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string:(urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")) else {
+            completion([])
+
+            return
+        }
         loadMarks(withURL: url) { cities in
             completion(cities)
         }

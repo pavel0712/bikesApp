@@ -74,7 +74,6 @@ class MarkDetailVC: UIViewController, UISheetPresentationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configureSheet()
-        self.tabBarItem.
         if let markDetail = self.markDetailVM {
             self.displayMarkVM(markVM: markDetail)
             self.configureMapView(markVM: markDetail)
